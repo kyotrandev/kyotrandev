@@ -16,9 +16,6 @@
 <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white"/>
 </p>
 
-
-## 📊 Profile Stats
-
 <img align="center" src="https://qph.cf2.quoracdn.net/main-qimg-c99e353f761d318322c853c03ebcf21b" />
 
 ## 📊 Profile Stats
