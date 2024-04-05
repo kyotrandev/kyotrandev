@@ -15,3 +15,10 @@
 </p>
 
 <img align="center" src="https://qph.cf2.quoracdn.net/main-qimg-c99e353f761d318322c853c03ebcf21b" />
+
+## 📊 Profile Stats
+<p>
+	<img align="left" src="https://github-readme-stats.vercel.app/api/top-langs/?username=KyoTranKMA&layout=compact&hide=html&theme=tokyonight&show_icons=true" alt="KyoTranKMA" />
+
+&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=KyoTranKMA&theme=tokyonight&show_icons=true" alt="KyoTranKMA" />
+</p>
