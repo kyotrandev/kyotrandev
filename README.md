@@ -5,9 +5,6 @@
 <h2 align="center">Technology Stack <img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="30"></h2>
   
 <p align="center">
-<img src="https://img.shields.io/badge/-C++-00599C?style=for-the-badge&logo=c"/>
-<img src="https://img.shields.io/badge/-HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
-<img src="https://img.shields.io/badge/-CSS3-1572B6?style=for-the-badge&logo=css3"/>
 <img src="https://img.shields.io/badge/-JavaScript-F7DF1E?style=for-the-badge&logo=javascript"/>
 <img src="https://img.shields.io/badge/-Nodejs-4EA94B?style=for-the-badge&logo=Node.js"/>
 <img src="https://img.shields.io/badge/-Expressjs-404D59?style=for-the-badge&logo=Express.js"/>
