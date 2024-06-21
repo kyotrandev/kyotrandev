@@ -17,10 +17,7 @@
 
 ## 📊 Profile Stats
 <p>
-	<img align="left" src="https://github-readme-stats.vercel.app/api/top-langs/?username=KyoTranKMA&layout=compact&hide=html&theme=tokyonight&show_icons=true" alt="KyoTranKMA" />
-
-&nbsp;
-<img align="center" src="https://github-readme-stats.vercel.app/api?username=KyoTranKMA&theme=tokyonight&show_icons=true" alt="KyoTranKMA" />
-</p>
+	<img align="left" src="https://github-readme-stats.vercel.app/api/top-langs/?username=KyoTranKMA&layout=compact&hide=html&theme=tokyonight&show_icons=true" alt="KyoTranKMA" /
 <br/>
 <img align="center" src = "https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=KyoTranKMA&theme=tokyonight"/>
+</p>
