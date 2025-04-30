@@ -1,0 +1,709 @@
+<svg fill="none" viewBox="0 0 1200 750" width="1200" height="750" xmlns="http://www.w3.org/2000/svg">
+  <foreignObject width="100%" height="100%">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <style>
+        @keyframes waveEffect {
+        0% { transform: translateX(0) translateY(0); }
+        50% { transform: translateX(0) translateY(-8px); }
+        100% { transform: translateX(0) translateY(0); }
+        }
+
+        @keyframes flagWave {
+        0% { transform: rotate(-5deg); }
+        50% { transform: rotate(5deg); }
+        100% { transform: rotate(-5deg); }
+        }
+        @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+        }
+        @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+        }
+        @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+        }
+        @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+        }
+        @keyframes pulse {
+        0% { opacity: 0.4; }
+        50% { opacity: 0.7; }
+        100% { opacity: 0.4; }
+        }
+        @keyframes bgScroll {
+        0% { background-position: 0 0; }
+        100% { background-position: -200px 0; }
+        }
+        @keyframes loadingBar {
+        0% { width: 0%; }
+        80% { width: 95%; }
+        100% { width: 100%; }
+        }
+
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .browser-container {
+        width: 100%;
+        height: 750px;
+        background: #f0f2f5;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+        }
+
+        .browser-window {
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .browser-header {
+        background: linear-gradient(to bottom, #f3f4f6, #e5e7eb);
+        padding: 8px 15px;
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid #d1d5db;
+        }
+
+        .browser-controls {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+        }
+
+        .control-buttons {
+        display: flex;
+        gap: 6px;
+        margin-right: 15px;
+        }
+
+        .control-button {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        }
+
+        .control-close { background: #ff5f57; }
+        .control-minimize { background: #febc2e; }
+        .control-expand { background: #28c840; }
+
+        .browser-tabs {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+        }
+
+        .browser-tab {
+        background: #ffffff;
+        border-radius: 8px 8px 0 0;
+        padding: 8px 12px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        margin-right: 1px;
+        border: 1px solid #d1d5db;
+        border-bottom: none;
+        position: relative;
+        font-weight: 500;
+        color: #374151;
+        }
+
+        .active-tab {
+        background: linear-gradient(to bottom, #ffffff, #f9fafb);
+        border-bottom: 1px solid #ffffff;
+        z-index: 1;
+        }
+
+        .tab-icon {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+        border-radius: 2px;
+        background: linear-gradient(135deg, #4f46e5, #6366f1);
+        }
+
+        .add-tab {
+        margin-left: 8px;
+        width: 18px;
+        height: 18px;
+        background: #e5e7eb;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: bold;
+        color: #6b7280;
+        cursor: pointer;
+        }
+
+        .address-bar {
+        display: flex;
+        align-items: center;
+        background: #f3f4f6;
+        border-radius: 25px;
+        padding: 0 10px;
+        border: 1px solid #d1d5db;
+        height: 30px;
+        overflow: hidden;
+        }
+
+        .url-actions {
+        display: flex;
+        gap: 10px;
+        margin-right: 8px;
+        }
+
+        .action-button {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        color: #6b7280;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+        }
+
+        .url-field {
+        flex-grow: 1;
+        font-size: 12px;
+        color: #111827;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: flex;
+        align-items: center;
+        }
+
+        .lock-icon {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #10b981;
+        margin-right: 6px;
+        font-size: 8px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+
+        .url-text {
+        color: #4b5563;
+        }
+
+        .domain {
+        color: #111827;
+        font-weight: 500;
+        }
+
+        .loading-bar {
+        height: 2px;
+        background: linear-gradient(to right, #4f46e5, #8b5cf6);
+        width: 0%;
+        margin-top: 4px;
+        animation: loadingBar 2s ease-out forwards;
+        border-radius: 2px;
+        }
+
+        .browser-body {
+        flex-grow: 1;
+        position: relative;
+        overflow: hidden;
+        }
+
+        .container {
+        font-family: 'Inter', system-ui, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(135deg, #0f0f23 0%, #1a1a3a 50%, #0f172a 100%);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        color: white;
+        padding: 60px;
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+        }
+
+        .browser-footer {
+        background: #f3f4f6;
+        border-top: 1px solid #d1d5db;
+        padding: 6px 15px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: #6b7280;
+        }
+
+        .footer-left, .footer-right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        }
+
+        .footer-item {
+        display: flex;
+        align-items: center;
+        }
+
+        .footer-icon {
+        width: 14px;
+        height: 14px;
+        background: #d1d5db;
+        border-radius: 2px;
+        margin-right: 5px;
+        }
+
+        .bg-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+        radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(192, 132, 252, 0.15) 0%, transparent 30%),
+        radial-gradient(circle at 50% 50%, rgba(79, 70, 229, 0.08) 0%, transparent 60%);
+        z-index: 0;
+        }
+
+        .grid-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 30px 30px;
+        z-index: 1;
+        }
+
+        .glow-points {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        }
+
+        .glow-point {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background-color: #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 15px 5px rgba(99, 102, 241, 0.7);
+        animation: pulse 3s infinite;
+        }
+
+        .glow-point:nth-child(1) { top: 15%; left: 10%; }
+        .glow-point:nth-child(2) { top: 25%; left: 80%; }
+        .glow-point:nth-child(3) { top: 60%; left: 15%; }
+        .glow-point:nth-child(4) { top: 70%; left: 70%; }
+        .glow-point:nth-child(5) { top: 40%; left: 90%; }
+        .glow-point:nth-child(6) { top: 80%; left: 40%; }
+
+        .lightning-logo {
+        position: absolute;
+        top: 50px;
+        right: 50px;
+        width: 100px;
+        height: 100px;
+        z-index: 3;
+        animation: blink 3s infinite;
+        filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.8));
+        }
+
+        .content-wrapper {
+        position: relative;
+        z-index: 2;
+        background: rgba(15, 23, 42, 0.75);
+        padding: 40px;
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+        width: 85%;
+        max-width: 950px;
+        animation: fadeIn 1s ease forwards;
+        }
+
+        .greeting {
+        font-size: 38px;
+        font-weight: 800;
+        line-height: 1.4;
+        letter-spacing: 1px;
+        white-space: nowrap;
+        overflow: hidden;
+        animation: typing 3s steps(40, end) forwards;
+        text-align: center;
+        margin-bottom: 20px;
+        background: linear-gradient(90deg, #ffffff, #a5b4fc);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+
+        .vietnam-flag {
+        margin-left: 12px;
+        font-size: 32px;
+        display: inline-block;
+        animation: flagWave 3s ease-in-out infinite;
+        transform-origin: center bottom;
+        }
+
+        .dev-icon {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+        width: 120px;
+        height: 120px;
+        z-index: 3;
+        }
+
+        .subtitle {
+        font-size: 20px;
+        font-weight: 300;
+        opacity: 0.9;
+        margin-bottom: 30px;
+        text-align: center;
+        letter-spacing: 0.5px;
+        color: #d1d5db;
+        }
+
+        .skills {
+        display: flex;
+        margin-top: 40px;
+        gap: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+        }
+
+        .skill-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover {
+        transform: translateY(-5px);
+        }
+
+        .skill-item:nth-child(1) { animation: waveEffect 4s ease-in-out infinite; }
+        .skill-item:nth-child(2) { animation: waveEffect 4s ease-in-out infinite 0.2s; }
+        .skill-item:nth-child(3) { animation: waveEffect 4s ease-in-out infinite 0.4s; }
+        .skill-item:nth-child(4) { animation: waveEffect 4s ease-in-out infinite 0.6s; }
+        .skill-item:nth-child(5) { animation: waveEffect 4s ease-in-out infinite 0.8s; }
+        .skill-item:nth-child(6) { animation: waveEffect 4s ease-in-out infinite 1.0s; }
+        .skill-item:nth-child(7) { animation: waveEffect 4s ease-in-out infinite 1.2s; }
+        .skill-item:nth-child(8) { animation: waveEffect 4s ease-in-out infinite 1.4s; }
+        .skill-item:nth-child(9) { animation: waveEffect 4s ease-in-out infinite 1.6s; }
+        .skill-item:nth-child(10) { animation: waveEffect 4s ease-in-out infinite 1.8s; }
+        .skill-label {
+        margin-top: 12px;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #e2e8f0;
+        }
+
+        .skills img {
+        width: 62px;
+        height: 62px;
+        filter: brightness(1.2) contrast(1.1);
+        transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .skills img:hover {
+        transform: scale(1.15);
+        filter: brightness(1.4);
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+        }
+
+        .divider {
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, #4f46e5, #a5b4fc, #4f46e5);
+        margin: 20px auto;
+        border-radius: 2px;
+        }
+
+        .tech-title {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 600;
+        margin-top: 10px;
+        color: #a5b4fc;
+        letter-spacing: 1px;
+        }
+
+        .tier1, .tier2 {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin-top: 20px;
+        }
+
+        .tier2 {
+        margin-top: 30px;
+        }
+      </style>
+
+      <div class="browser-container">
+        <div class="browser-window">
+          <!-- Browser Header -->
+          <div class="browser-header">
+            <div class="browser-controls">
+              <div class="control-buttons">
+                <div class="control-button control-close"></div>
+                <div class="control-button control-minimize"></div>
+                <div class="control-button control-expand"></div>
+              </div>
+            </div>
+
+            <div class="browser-tabs">
+              <div class="browser-tab active-tab">
+                <div class="tab-icon"></div>
+                <span>KyoTranDev Portfolio</span>
+              </div>
+              <div class="add-tab">+</div>
+            </div>
+
+            <div class="address-bar">
+              <div class="url-actions">
+                <div class="action-button">←</div>
+                <div class="action-button">→</div>
+                <div class="action-button">↻</div>
+              </div>
+              <div class="url-field">
+                <div class="lock-icon">✓</div>
+                <span class="url-text">https://</span>
+                <span class="domain">kyotrandev.portfolio</span>
+                <span class="url-text">/profile</span>
+              </div>
+            </div>
+
+            <div class="loading-bar"></div>
+          </div>
+
+          <!-- Browser Content -->
+          <div class="browser-body">
+            <div class="container">
+              <div class="bg-pattern"></div>
+              <div class="grid-overlay"></div>
+              <div class="glow-points">
+                <div class="glow-point"></div>
+                <div class="glow-point"></div>
+                <div class="glow-point"></div>
+                <div class="glow-point"></div>
+                <div class="glow-point"></div>
+                <div class="glow-point"></div>
+              </div>
+
+              <!-- Lightning Logo -->
+              <svg class="lightning-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="lightning-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#6366f1" />
+                    <stop offset="100%" stop-color="#a5b4fc" />
+                  </linearGradient>
+                </defs>
+                <path d="M60,0 L30,50 L50,50 L35,100 L75,40 L50,40 L60,0"
+                  fill="url(#lightning-gradient)" />
+              </svg>
+
+              <div class="content-wrapper">
+                <div class="greeting">
+                  Hi! I'm KyoTranDev from VietNam
+                </div>
+                <div class="divider"></div>
+                <div class="subtitle">
+                  Aspiring to become an indie hacker with a passion for web development
+                </div>
+                <div class="tech-title">CORE TECHNOLOGIES</div>
+                <div class="tier1">
+                  <!-- JavaScript -->
+                  <div class="skill-item">
+                    <div class="tech-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="62"
+                        height="62">
+                        <path fill="#F0DB4F" d="M1.408 1.408h125.184v125.185H1.408z"></path>
+                        <path fill="#323330"
+                          d="M116.347 96.736c-.917-5.711-4.641-10.508-15.672-14.981-3.832-1.761-8.104-3.022-9.377-5.926-.452-1.69-.512-2.642-.226-3.665.821-3.32 4.784-4.355 7.925-3.403 2.023.678 3.938 2.237 5.093 4.724 5.402-3.498 5.391-3.475 9.163-5.879-1.381-2.141-2.118-3.129-3.022-4.045-3.249-3.629-7.676-5.498-14.756-5.355l-3.688.477c-3.534.893-6.902 2.748-8.877 5.235-5.926 6.724-4.236 18.492 2.975 23.335 7.104 5.332 17.54 6.545 18.873 11.531 1.297 6.104-4.486 8.08-10.234 7.378-4.236-.881-6.592-3.034-9.139-6.949-4.688 2.713-4.688 2.713-9.508 5.485 1.143 2.499 2.344 3.63 4.26 5.795 9.068 9.198 31.76 8.746 35.83-5.176.165-.478 1.261-3.666.38-8.581zM69.462 58.943H57.753l-.048 30.272c0 6.438.333 12.34-.714 14.149-1.713 3.558-6.152 3.117-8.175 2.427-2.059-1.012-3.106-2.451-4.319-4.485-.333-.584-.583-1.036-.667-1.071l-9.52 5.83c1.583 3.249 3.915 6.069 6.902 7.901 4.462 2.678 10.459 3.499 16.731 2.059 4.082-1.189 7.604-3.652 9.448-7.401 2.666-4.915 2.094-10.864 2.07-17.444.06-10.735.001-21.468.001-32.237z"></path>
+                      </svg>
+                    </div>
+                    <span class="skill-label">JavaScript</span>
+                  </div>
+                  <!-- TypeScript -->
+                  <div class="skill-item">
+                    <div class="tech-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="62"
+                        height="62">
+                        <path fill="#3178c6"
+                          d="M2 63.91v62.5h125v-125H2zm100.73-5a15.56 15.56 0 017.82 4.5 20.58 20.58 0 013 4c0 .16-5.4 3.81-8.69 5.85-.12.08-.6-.44-1.13-1.23a7.09 7.09 0 00-5.87-3.53c-3.79-.26-6.23 1.73-6.21 5a4.58 4.58 0 00.54 2.34c.83 1.73 2.38 2.76 7.24 4.86 8.95 3.85 12.78 6.39 15.16 10 2.66 4 3.31 10.46 1.45 15.24-2 5.2-6.9 8.73-13.83 9.9a38.32 38.32 0 01-9.52-.1A23 23 0 0180 109.19c-1.15-1.27-3.39-4.58-3.25-4.82a9.34 9.34 0 011.15-.73l4.6-2.64 3.59-2.08.75 1.11a16.78 16.78 0 004.74 4.54c4 2.1 9.46 1.81 12.16-.62a5.43 5.43 0 00.69-6.92c-1-1.39-3-2.56-8.59-5-6.45-2.78-9.23-4.5-11.77-7.24a16.48 16.48 0 01-3.43-6.25 25 25 0 01-.22-8c1.33-6.23 6-10.58 12.82-11.87a31.66 31.66 0 019.49.26zm-29.34 5.24v5.12H57.16v46.23H45.65V69.26H29.38v-5a49.19 49.19 0 01.14-5.16c.06-.08 10-.12 22-.1h21.81z"></path>
+                      </svg>
+                    </div>
+                    <span class="skill-label">TypeScript</span>
+                  </div>
+                  <!-- React -->
+                  <div class="skill-item">
+                    <div class="tech-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="62"
+                        height="62">
+                        <g fill="#61DAFB">
+                          <circle cx="64" cy="64" r="11.4"></circle>
+                          <path
+                            d="M107.3 45.2c-2.2-.8-4.5-1.6-6.9-2.3.6-2.4 1.1-4.8 1.5-7.1 2.1-13.2-.2-22.5-6.6-26.1-1.9-1.1-4-1.6-6.4-1.6-7 0-15.9 5.2-24.9 13.9-9-8.7-17.9-13.9-24.9-13.9-2.4 0-4.5.5-6.4 1.6-6.4 3.7-8.7 13-6.6 26.1.4 2.3.9 4.7 1.5 7.1-2.4.7-4.7 1.4-6.9 2.3C8.2 50 1.4 56.6 1.4 64s6.9 14 19.3 18.8c2.2.8 4.5 1.6 6.9 2.3-.6 2.4-1.1 4.8-1.5 7.1-2.1 13.2.2 22.5 6.6 26.1 1.9 1.1 4 1.6 6.4 1.6 7.1 0 16-5.2 24.9-13.9 9 8.7 17.9 13.9 24.9 13.9 2.4 0 4.5-.5 6.4-1.6 6.4-3.7 8.7-13 6.6-26.1-.4-2.3-.9-4.7-1.5-7.1 2.4-.7 4.7-1.4 6.9-2.3 12.5-4.8 19.3-11.4 19.3-18.8s-6.8-14-19.3-18.8zM92.5 14.7c4.1 2.4 5.5 9.8 3.8 20.3-.3 2.1-.8 4.3-1.4 6.6-5.2-1.2-10.7-2-16.5-2.5-3.4-4.8-6.9-9.1-10.4-13 7.4-7.3 14.9-12.3 21-12.3 1.3 0 2.5.3 3.5.9zM81.3 74c-1.8 3.2-3.9 6.4-6.1 9.6-3.7.3-7.4.4-11.2.4-3.9 0-7.6-.1-11.2-.4-2.2-3.2-4.2-6.4-6-9.6-1.9-3.3-3.7-6.7-5.3-10 1.6-3.3 3.4-6.7 5.3-10 1.8-3.2 3.9-6.4 6.1-9.6 3.7-.3 7.4-.4 11.2-.4 3.9 0 7.6.1 11.2.4 2.2 3.2 4.2 6.4 6 9.6 1.9 3.3 3.7 6.7 5.3 10-1.7 3.3-3.4 6.6-5.3 10zm8.3-3.3c1.5 3.5 2.7 6.9 3.8 10.3-3.4.8-7 1.4-10.8 1.9 1.2-1.9 2.5-3.9 3.6-6 1.2-2.1 2.3-4.2 3.4-6.2zM64 97.8c-2.4-2.6-4.7-5.4-6.9-8.3 2.3.1 4.6.2 6.9.2 2.3 0 4.6-.1 6.9-.2-2.2 2.9-4.5 5.7-6.9 8.3zm-18.6-15c-3.8-.5-7.4-1.1-10.8-1.9 1.1-3.3 2.3-6.8 3.8-10.3 1.1 2 2.2 4.1 3.4 6.1 1.2 2.2 2.4 4.1 3.6 6.1zm-7-25.5c-1.5-3.5-2.7-6.9-3.8-10.3 3.4-.8 7-1.4 10.8-1.9-1.2 1.9-2.5 3.9-3.6 6-1.2 2.1-2.3 4.2-3.4 6.2zM64 30.2c2.4 2.6 4.7 5.4 6.9 8.3-2.3-.1-4.6-.2-6.9-.2-2.3 0-4.6.1-6.9.2 2.2-2.9 4.5-5.7 6.9-8.3zm22.2 21l-3.6-6c3.8.5 7.4 1.1 10.8 1.9-1.1 3.3-2.3 6.8-3.8 10.3-1.1-2.1-2.2-4.2-3.4-6.2zM31.7 35c-1.7-10.5-.3-17.9 3.8-20.3 1-.6 2.2-.9 3.5-.9 6 0 13.5 4.9 21 12.3-3.5 3.8-7 8.2-10.4 13-5.8.5-11.3 1.4-16.5 2.5-.6-2.3-1-4.5-1.4-6.6zM7 64c0-4.7 5.7-9.7 15.7-13.4 2-.8 4.2-1.5 6.4-2.1 1.6 5 3.6 10.3 6 15.6-2.4 5.3-4.5 10.5-6 15.5C15.3 75.6 7 69.6 7 64zm28.5 49.3c-4.1-2.4-5.5-9.8-3.8-20.3.3-2.1.8-4.3 1.4-6.6 5.2 1.2 10.7 2 16.5 2.5 3.4 4.8 6.9 9.1 10.4 13-7.4 7.3-14.9 12.3-21 12.3-1.3 0-2.5-.3-3.5-.9zM96.3 93c1.7 10.5.3 17.9-3.8 20.3-1 .6-2.2.9-3.5.9-6 0-13.5-4.9-21-12.3 3.5-3.8 7-8.2 10.4-13 5.8-.5 11.3-1.4 16.5-2.5.6 2.3 1 4.5 1.4 6.6zm9-15.6c-1.6 5-3.6 10.3-6 15.6-2.4-5.3-4.5-10.5-6-15.6 1.5-5.1 3.6-10.3 6-15.6 2.4 5.3 4.5 10.5 6 15.6z"></path>
+                        </g>
+                      </svg>
+                    </div>
+                    <span class="skill-label">React</span>
+                  </div>
+                  <!-- Express.js -->
+                  <div class="skill-item">
+                    <div class="tech-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="62"
+                        height="62">
+                        <path fill="#000000"
+                          d="M40.53 77.82V50.74H42V55a5.57 5.57 0 00.48-.6 7.28 7.28 0 016.64-4.12c3.35-.1 6.07 1.14 7.67 4.12a13.24 13.24 0 01.32 12.14c-1.49 3.34-5.17 5-9.11 4.39a7.37 7.37 0 01-5.88-3.88v10.77zM42 60.32c.13 1.32.18 2.26.33 3.18.58 3.62 2.72 5.77 6.08 6.16A6.91 6.91 0 0056 65.27a11.77 11.77 0 00-.26-9.68 6.77 6.77 0 00-7.13-3.94 6.59 6.59 0 00-5.89 4.87 33.4 33.4 0 00-.72 3.8zM88.41 64a7.92 7.92 0 01-7.74 7c-6.16.31-9.05-3.78-9.51-8.5a13.62 13.62 0 011.2-7.5 8.37 8.37 0 018.71-4.67 8 8 0 017.1 6.09 41.09 41.09 0 01.69 4.5H72.67c-.3 4.28 2 7.72 5.26 8.55 4.06 1 7.53-.76 8.79-4.62.28-.99.79-1.13 1.69-.85zm-15.74-4.45h14.68c-.09-3.76-2.5-7.43-6.61-7.44-3.2 0-6.85 2.94-8.07 7.44zM91.39 64.1h1.42a5.69 5.69 0 003.34 4.9 8.73 8.73 0 007.58-.2 3.41 3.41 0 002-3.35 3.09 3.09 0 00-2.08-3.09c-1.56-.58-3.22-.9-4.81-1.41A35.25 35.25 0 0194 59.18c-2.56-1.25-2.72-6.12.18-7.66a10.21 10.21 0 019.76-.15 5.14 5.14 0 012.6 5.24h-1.22c0-.06-.11-.11-.11-.17-.15-3.89-3.41-5.09-6.91-4.75a9.17 9.17 0 00-3 .91 3 3 0 00-1.74 3 3 3 0 002 2.82c1.54.56 3.15.92 4.73 1.36 1.27.35 2.59.58 3.82 1a4.51 4.51 0 013.1 4.07 4.81 4.81 0 01-2.59 5c-3.34 1.89-8.84 1.39-11.29-1a6.67 6.67 0 01-1.94-4.75zM125.21 56.61h-1.33c0-.18-.07-.34-.09-.49a4.35 4.35 0 00-3.54-4.18 8.73 8.73 0 00-5.61.27 3.41 3.41 0 00-2.47 3.25 3.14 3.14 0 002.4 3.16c2 .62 4.05 1 6.08 1.56a17 17 0 011.94.59 5 5 0 01.27 9.31 11.13 11.13 0 01-9 .09 6.24 6.24 0 01-3.76-6.06h1.3a7.29 7.29 0 00.55 2.88 4.93 4.93 0 003.19 2.75 9.18 9.18 0 004.77.23 4.56 4.56 0 003.36-2.13 3.21 3.21 0 00.08-3.11 3.31 3.31 0 00-2.46-1.91c-2.46-.67-4.94-1.26-7.43-1.85a6.92 6.92 0 01-1.83-.73 4.78 4.78 0 01-2.28-5.34 5.41 5.41 0 013.78-4 12.44 12.44 0 018.16-.15 5.55 5.55 0 013.92 5.84zM38.1 70.51a2.29 2.29 0 01-2.84-1.08c-1.63-2.44-3.43-4.77-5.16-7.15l-.75-1c-2.06 2.76-4.12 5.41-6 8.16a2.2 2.2 0 01-2.7 1.06l7.73-10.37-7.19-9.37a2.39 2.39 0 012.85 1c1.67 2.44 3.52 4.77 5.36 7.24 1.85-2.45 3.68-4.79 5.39-7.21a2.15 2.15 0 012.68-1l-2.79 3.7c-1.25 1.65-2.48 3.31-3.78 4.92a1 1 0 000 1.49c2.39 3.17 4.76 6.35 7.2 9.61zM70.92 50.66v1.4a7.25 7.25 0 00-7.72 7.49v11h-1.43V50.74h1.4v4.06c1.73-2.96 4.4-4.06 7.75-4.14zM2.13 60c.21-1 .34-2.09.63-3.11 1.73-6.15 8.78-8.71 13.63-4.9 2.84 2.23 3.55 5.39 3.41 8.95H3.8c-.41 6.23 3.51 10.61 9.67 9.87 2.6-.31 4.91-1.79 5.36-5.17.06-.5.24-.68.72-.66.48.02.66.22.64.72a7.11 7.11 0 01-5.91 6.7c-5.42.95-10.26-2.44-11.1-7.84-.37-2.42-.29-4.9-.05-7.56zm1.69-.43h15c-.09-4.61-3-7.88-6.88-7.91-4.32-.06-7.94 2.64-8.12 7.91z"></path>
+                      </svg>
+                    </div>
+                    <span class="skill-label">Express.js</span>
+                  </div>
+                  <!-- Next.js -->
+                  <div class="skill-item">
+                    <div class="tech-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="62"
+                        height="62">
+                        <path
+                          d="M64 0C28.7 0 0 28.7 0 64s28.7 64 64 64c11.2 0 21.7-2.9 30.8-7.9L48.4 55.3v36.6h-6.8V41.8h6.8l50.5 75.8C116.4 106.2 128 86.5 128 64c0-35.3-28.7-64-64-64zm22.1 84.6l-7.5-11.3V41.8h7.5v42.8z"
+                          fill="#000000"></path>
+                      </svg>
+                    </div>
+                    <span class="skill-label">Next.js</span>
+                  </div>
+                  <!-- Tailwind -->
+                  <div class="skill-item">
+                    <div class="tech-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="62"
+                        height="62">
+                        <path
+                          d="M64.004 25.602c-17.067 0-27.73 8.53-32 25.597 6.4-8.531 13.867-11.73 22.403-9.597 4.87 1.2 8.347 4.676 12.2 8.53C72.414 55.940 80.14 64 96.004 64c17.067 0 27.73-8.531 32-25.602-6.4 8.531-13.867 11.735-22.403 9.602-4.87-1.2-8.347-4.676-12.2-8.53-5.808-5.808-13.534-13.868-29.397-13.868zm-32 38.4c-17.067 0-27.73 8.531-32 25.602 6.4-8.532 13.867-11.735 22.403-9.602 4.87 1.2 8.347 4.676 12.2 8.53 5.808 5.808 13.534 13.868 29.397 13.868 17.067 0 27.73-8.53 32-25.597-6.4 8.531-13.867 11.73-22.403 9.597-4.87-1.2-8.347-4.676-12.2-8.53-5.808-5.808-13.534-13.868-29.397-13.868z"
+                          fill="#38B2AC"></path>
+                      </svg>
+                    </div>
+                    <span class="skill-label">Tailwind</span>
+                  </div>
+                </div>
+
+                <div class="tech-title">DEVELOPMENT TOOLS</div>
+                <div class="tier2">
+                  <!-- Node.js -->
+                  <div class="skill-item">
+                    <div class="tech-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="62"
+                        height="62">
+                        <path fill="#83CD29"
+                          d="M112.771 30.334L68.674 4.729c-2.781-1.584-6.402-1.584-9.205 0L14.901 30.334C12.031 31.985 10 35.088 10 38.407v51.142c0 3.319 2.084 6.423 4.954 8.083l11.775 6.688c5.628 2.772 7.617 2.772 10.178 2.772 8.333 0 13.093-5.039 13.093-13.828v-50.49c0-.713-.371-1.774-1.071-1.774h-5.623C42.594 41 41 42.061 41 42.773v50.49c0 3.896-3.524 7.773-10.11 4.48L18.723 90.73c-.424-.23-.723-.693-.723-1.181V38.407c0-.482.555-.966.982-1.213l44.424-25.561c.415-.235 1.025-.235 1.439 0l43.882 25.555c.42.253.272.722.272 1.219v51.142c0 .488.183.963-.232 1.198l-44.086 25.576c-.378.227-.847.227-1.261 0l-11.307-6.749c-.341-.198-.746-.269-1.073-.086-3.146 1.783-3.726 2.02-6.677 3.043-.726.253-1.797.692.41 1.929l14.798 8.754a9.294 9.294 0 004.647 1.246c1.642 0 3.25-.426 4.667-1.246l43.885-25.582c2.87-1.672 4.23-4.764 4.23-8.083V38.407c0-3.319-1.36-6.414-4.229-8.073zM77.91 81.445c-11.726 0-14.309-3.235-15.17-9.066-.1-.628-.633-1.379-1.272-1.379h-5.731c-.709 0-1.279.86-1.279 1.566 0 7.466 4.059 16.512 23.453 16.512 14.039 0 22.088-5.455 22.088-15.109 0-9.572-6.467-12.084-20.082-13.886-13.762-1.819-15.16-2.738-15.16-5.962 0-2.658 1.184-6.203 11.374-6.203 9.105 0 12.461 1.954 13.842 8.091.118.577.645.991 1.24.991h5.754c.354 0 .692-.143.94-.396.24-.272.367-.613.335-.979-.891-10.568-7.912-15.493-22.112-15.493-12.631 0-20.166 5.334-20.166 14.275 0 9.698 7.497 12.378 19.622 13.577 14.505 1.422 15.633 3.542 15.633 6.395 0 4.955-3.978 7.066-13.309 7.066z"></path>
+                      </svg>
+                    </div>
+                    <span class="skill-label">Node.js</span>
+                  </div>
+                  <!-- VSCode -->
+                  <div class="skill-item">
+                    <div class="tech-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="62"
+                        height="62">
+                        <path
+                          d="M95 2.3l30.5 12.3v98.7L94.8 125.7 45.8 77l-31 24.1L2.5 94.9V33.1l12.3-5.9 31 24.3ZM14.8 45.7V83.2l18.5-19Zm48.1 18.5L94.8 89.3V39Z"
+                          fill="#007acc" />
+                      </svg>
+                    </div>
+                    <span class="skill-label">VSCode</span>
+                  </div>
+                  <!-- GitHub -->
+                  <div class="skill-item">
+                    <div class="tech-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="62"
+                        height="62">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M64 5.103c-33.347 0-60.388 27.035-60.388 60.388 0 26.682 17.303 49.317 41.297 57.303 3.017.56 4.125-1.31 4.125-2.905 0-1.44-.056-6.197-.082-11.243-16.8 3.653-20.345-7.125-20.345-7.125-2.747-6.98-6.705-8.836-6.705-8.836-5.48-3.748.413-3.67.413-3.67 6.063.425 9.257 6.223 9.257 6.223 5.386 9.23 14.127 6.562 17.573 5.02.542-3.903 2.107-6.568 3.834-8.076-13.413-1.525-27.514-6.704-27.514-29.843 0-6.593 2.36-11.98 6.223-16.21-.628-1.52-2.695-7.662.584-15.98 0 0 5.07-1.623 16.61 6.19C53.7 35 58.867 34.327 64 34.304c5.13.023 10.3.694 15.127 2.033 11.526-7.813 16.59-6.19 16.59-6.19 3.287 8.317 1.22 14.46.593 15.98 3.872 4.23 6.215 9.617 6.215 16.21 0 23.194-14.127 28.3-27.574 29.796 2.167 1.874 4.097 5.55 4.097 11.183 0 8.08-.07 14.583-.07 16.572 0 1.607 1.088 3.49 4.148 2.897 23.98-7.994 41.263-30.622 41.263-57.294C124.388 32.14 97.35 5.104 64 5.104z"
+                          fill="#181616"></path>
+                        <path
+                          d="M26.484 91.806c-.133.3-.605.39-1.035.185-.44-.196-.685-.605-.543-.906.13-.31.603-.395 1.04-.188.44.197.69.61.537.91zm2.446 2.729c-.287.267-.85.143-1.232-.28-.396-.42-.47-.983-.177-1.254.298-.266.843-.14 1.24.28.394.426.472.984.17 1.255zM31.312 98.012c-.37.258-.976.017-1.35-.52-.37-.538-.37-1.183.01-1.44.373-.258.97-.025 1.35.507.368.545.368 1.19-.01 1.452zm3.261 3.361c-.33.365-1.036.267-1.552-.23-.527-.487-.674-1.18-.343-1.544.336-.366 1.045-.264 1.564.23.527.486.686 1.18.333 1.543zm4.5 1.951c-.147.473-.825.688-1.51.486-.683-.207-1.13-.76-.99-1.238.14-.477.823-.7 1.512-.485.683.206 1.13.756.988 1.237zm4.943.361c.017.498-.563.91-1.28.92-.723.017-1.308-.387-1.315-.877 0-.503.568-.91 1.29-.924.717-.013 1.306.387 1.306.88zm4.598-.782c.086.485-.413.984-1.126 1.117-.7.13-1.35-.172-1.44-.653-.086-.498.422-.997 1.122-1.126.714-.123 1.354.17 1.444.663zm0 0"
+                          fill="#181616"></path>
+                      </svg>
+                    </div>
+                    <span class="skill-label">GitHub</span>
+                  </div>
+
+                  <div class="skill-item">
+                    <img src="." alt="MongoDB" />
+                  </div>
+                  <div class="skill-item">
+                    <img src="." alt="docker" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Browser Footer -->
+          <div class="browser-footer">
+            <div class="footer-left">
+              <div class="footer-item">
+                <div class="footer-icon"></div>
+                <span>Developer Tools</span>
+              </div>
+              <div class="footer-item">
+                <div class="footer-icon"></div>
+                <span>Extensions</span>
+              </div>
+            </div>
+            <div class="footer-right">
+              <div class="footer-item">
+                <span>HTML5 • CSS3 • JavaScript</span>
+              </div>
+              <div class="footer-item">
+                <div class="footer-icon"></div>
+                <span>Cookies: 0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </foreignObject>
+</svg>
