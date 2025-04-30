@@ -7,6 +7,12 @@
           50% { transform: translateX(0) translateY(-8px); }
           100% { transform: translateX(0) translateY(0); }
         }
+        
+        @keyframes flagWave {
+          0% { transform: rotate(-5deg); }
+          50% { transform: rotate(5deg); }
+          100% { transform: rotate(-5deg); }
+        }
         @keyframes typing {
           from { width: 0 }
           to { width: 100% }
@@ -29,13 +35,210 @@
           50% { opacity: 0.7; }
           100% { opacity: 0.4; }
         }
+        @keyframes bgScroll {
+          0% { background-position: 0 0; }
+          100% { background-position: -200px 0; }
+        }
+        @keyframes loadingBar {
+          0% { width: 0%; }
+          80% { width: 95%; }
+          100% { width: 100%; }
+        }
+        
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        .browser-container {
+          width: 100%;
+          height: 750px;
+          background: #f0f2f5;
+          padding: 25px;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          position: relative;
+        }
+        
+        .browser-window {
+          background: #ffffff;
+          border-radius: 10px;
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+          overflow: hidden;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .browser-header {
+          background: linear-gradient(to bottom, #f3f4f6, #e5e7eb);
+          padding: 8px 15px;
+          display: flex;
+          flex-direction: column;
+          border-bottom: 1px solid #d1d5db;
+        }
+        
+        .browser-controls {
+          display: flex;
+          align-items: center;
+          margin-bottom: 8px;
+        }
+        
+        .control-buttons {
+          display: flex;
+          gap: 6px;
+          margin-right: 15px;
+        }
+        
+        .control-button {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+        }
+        
+        .control-close { background: #ff5f57; }
+        .control-minimize { background: #febc2e; }
+        .control-expand { background: #28c840; }
+        
+        .browser-tabs {
+          display: flex;
+          align-items: center;
+          margin-bottom: 8px;
+        }
+        
+        .browser-tab {
+          background: #ffffff;
+          border-radius: 8px 8px 0 0;
+          padding: 8px 12px;
+          font-size: 12px;
+          display: flex;
+          align-items: center;
+          margin-right: 1px;
+          border: 1px solid #d1d5db;
+          border-bottom: none;
+          position: relative;
+          font-weight: 500;
+          color: #374151;
+        }
+        
+        .active-tab {
+          background: linear-gradient(to bottom, #ffffff, #f9fafb);
+          border-bottom: 1px solid #ffffff;
+          z-index: 1;
+        }
+        
+        .tab-icon {
+          width: 16px;
+          height: 16px;
+          margin-right: 8px;
+          border-radius: 2px;
+          background: linear-gradient(135deg, #4f46e5, #6366f1);
+        }
+        
+        .add-tab {
+          margin-left: 8px;
+          width: 18px;
+          height: 18px;
+          background: #e5e7eb;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 14px;
+          font-weight: bold;
+          color: #6b7280;
+          cursor: pointer;
+        }
+        
+        .address-bar {
+          display: flex;
+          align-items: center;
+          background: #f3f4f6;
+          border-radius: 25px;
+          padding: 0 10px;
+          border: 1px solid #d1d5db;
+          height: 30px;
+          overflow: hidden;
+        }
+        
+        .url-actions {
+          display: flex;
+          gap: 10px;
+          margin-right: 8px;
+        }
+        
+        .action-button {
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          color: #6b7280;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 12px;
+          font-weight: bold;
+        }
+        
+        .url-field {
+          flex-grow: 1;
+          font-size: 12px;
+          color: #111827;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: flex;
+          align-items: center;
+        }
+        
+        .lock-icon {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background: #10b981;
+          margin-right: 6px;
+          font-size: 8px;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        
+        .url-text {
+          color: #4b5563;
+        }
+        
+        .domain {
+          color: #111827;
+          font-weight: 500;
+        }
+        
+        .loading-bar {
+          height: 2px;
+          background: linear-gradient(to right, #4f46e5, #8b5cf6);
+          width: 0%;
+          margin-top: 4px;
+          animation: loadingBar 2s ease-out forwards;
+          border-radius: 2px;
+        }
+        
+        .browser-body {
+          flex-grow: 1;
+          position: relative;
+          overflow: hidden;
+        }
+        
         .container {
           font-family: 'Inter', system-ui, sans-serif;
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          height: 750px;
+          height: 100%;
           width: 100%;
           background: linear-gradient(135deg, #0f0f23 0%, #1a1a3a 50%, #0f172a 100%);
           background-size: 400% 400%;
@@ -46,6 +249,36 @@
           position: relative;
           overflow: hidden;
         }
+        
+        .browser-footer {
+          background: #f3f4f6;
+          border-top: 1px solid #d1d5db;
+          padding: 6px 15px;
+          display: flex;
+          justify-content: space-between;
+          font-size: 11px;
+          color: #6b7280;
+        }
+        
+        .footer-left, .footer-right {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+        }
+        
+        .footer-item {
+          display: flex;
+          align-items: center;
+        }
+        
+        .footer-icon {
+          width: 14px;
+          height: 14px;
+          background: #d1d5db;
+          border-radius: 2px;
+          margin-right: 5px;
+        }
+        
         .bg-pattern {
           position: absolute;
           top: 0;
@@ -58,6 +291,7 @@
             radial-gradient(circle at 50% 50%, rgba(79, 70, 229, 0.08) 0%, transparent 60%);
           z-index: 0;
         }
+        
         .grid-overlay {
           position: absolute;
           top: 0;
@@ -69,12 +303,14 @@
           background-size: 30px 30px;
           z-index: 1;
         }
+        
         .glow-points {
           position: absolute;
           width: 100%;
           height: 100%;
           z-index: 1;
         }
+        
         .glow-point {
           position: absolute;
           width: 4px;
@@ -84,6 +320,7 @@
           box-shadow: 0 0 15px 5px rgba(99, 102, 241, 0.7);
           animation: pulse 3s infinite;
         }
+        
         .glow-point:nth-child(1) { top: 15%; left: 10%; }
         .glow-point:nth-child(2) { top: 25%; left: 80%; }
         .glow-point:nth-child(3) { top: 60%; left: 15%; }
@@ -101,6 +338,7 @@
           animation: blink 3s infinite;
           filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.8));
         }
+        
         .content-wrapper {
           position: relative;
           z-index: 2;
@@ -115,6 +353,7 @@
           max-width: 950px;
           animation: fadeIn 1s ease forwards;
         }
+        
         .greeting {
           font-size: 38px;
           font-weight: 800;
@@ -133,12 +372,24 @@
           align-items: center;
           justify-content: center;
         }
-        .flag {
+        
+        .vietnam-flag {
           margin-left: 12px;
-          font-size: 36px;
+          font-size: 32px;
           display: inline-block;
-          animation: waveEffect 2s ease-in-out infinite;
+          animation: flagWave 3s ease-in-out infinite;
+          transform-origin: center bottom;
         }
+        
+        .dev-icon {
+          position: absolute;
+          top: 40px;
+          left: 40px;
+          width: 120px;
+          height: 120px;
+          z-index: 3;
+        }
+        
         .subtitle {
           font-size: 20px;
           font-weight: 300;
@@ -148,6 +399,7 @@
           letter-spacing: 0.5px;
           color: #d1d5db;
         }
+        
         .skills {
           display: flex;
           margin-top: 40px;
@@ -155,15 +407,18 @@
           flex-wrap: wrap;
           justify-content: center;
         }
+        
         .skill-item {
           display: flex;
           flex-direction: column;
           align-items: center;
           transition: transform 0.3s ease;
         }
+        
         .skill-item:hover {
           transform: translateY(-5px);
         }
+        
         .skill-item:nth-child(1) { animation: waveEffect 4s ease-in-out infinite; }
         .skill-item:nth-child(2) { animation: waveEffect 4s ease-in-out infinite 0.2s; }
         .skill-item:nth-child(3) { animation: waveEffect 4s ease-in-out infinite 0.4s; }
@@ -174,6 +429,7 @@
         .skill-item:nth-child(8) { animation: waveEffect 4s ease-in-out infinite 1.4s; }
         .skill-item:nth-child(9) { animation: waveEffect 4s ease-in-out infinite 1.6s; }
         .skill-item:nth-child(10) { animation: waveEffect 4s ease-in-out infinite 1.8s; }
+        
         .skill-label {
           margin-top: 12px;
           font-size: 14px;
@@ -182,17 +438,20 @@
           text-transform: uppercase;
           color: #e2e8f0;
         }
+        
         .skills img {
           width: 62px;
           height: 62px;
           filter: brightness(1.2) contrast(1.1);
           transition: transform 0.3s ease, filter 0.3s ease;
         }
+        
         .skills img:hover {
           transform: scale(1.15);
           filter: brightness(1.4);
           box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
         }
+        
         .divider {
           width: 80px;
           height: 4px;
@@ -200,6 +459,7 @@
           margin: 20px auto;
           border-radius: 2px;
         }
+        
         .tech-title {
           text-align: center;
           font-size: 18px;
@@ -208,6 +468,7 @@
           color: #a5b4fc;
           letter-spacing: 1px;
         }
+        
         .tier1, .tier2 {
           display: flex;
           justify-content: center;
@@ -215,88 +476,141 @@
           gap: 30px;
           margin-top: 20px;
         }
+        
         .tier2 {
           margin-top: 30px;
         }
       </style>
       
-      <!-- Lightning Logo -->
-      <svg class="lightning-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="lightning-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#6366f1" />
-            <stop offset="100%" stop-color="#a5b4fc" />
-          </linearGradient>
-        </defs>
-        <path d="M60,0 L30,50 L50,50 L35,100 L75,40 L50,40 L60,0" fill="url(#lightning-gradient)" />
-      </svg>
-      
-      <div class="container">
-        <div class="bg-pattern"></div>
-        <div class="grid-overlay"></div>
-        <div class="glow-points">
-          <div class="glow-point"></div>
-          <div class="glow-point"></div>
-          <div class="glow-point"></div>
-          <div class="glow-point"></div>
-          <div class="glow-point"></div>
-          <div class="glow-point"></div>
-        </div>
-        
-        <div class="content-wrapper">
-          <div class="greeting">
-            Hi! I'm KyoTranDev from Vietnam
-          </div>
-          <div class="divider"></div>
-          <div class="subtitle">
-            aspiring to become an indie hacker with a passion for web development
-          </div>
-          
-          <div class="tech-title">CORE TECHNOLOGIES</div>
-          <div class="tier1">
-            <div class="skill-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS" />
-              <span class="skill-label">JavaScript</span>
+      <div class="browser-container">
+        <div class="browser-window">
+          <!-- Browser Header -->
+          <div class="browser-header">
+            <div class="browser-controls">
+              <div class="control-buttons">
+                <div class="control-button control-close"></div>
+                <div class="control-button control-minimize"></div>
+                <div class="control-button control-expand"></div>
+              </div>
             </div>
-            <div class="skill-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" />
-              <span class="skill-label">TypeScript</span>
+            
+            <div class="browser-tabs">
+              <div class="browser-tab active-tab">
+                <div class="tab-icon"></div>
+                <span>KyoTranDev Portfolio</span>
+              </div>
+              <div class="add-tab">+</div>
             </div>
-            <div class="skill-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" />
-              <span class="skill-label">React</span>
+            
+            <div class="address-bar">
+              <div class="url-actions">
+                <div class="action-button">←</div>
+                <div class="action-button">→</div>
+                <div class="action-button">↻</div>
+              </div>
+              <div class="url-field">
+                <div class="lock-icon">✓</div>
+                <span class="url-text">https://</span><span class="domain">kyotrandev.portfolio</span><span class="url-text">/profile</span>
+              </div>
             </div>
-            <div class="skill-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" />
-              <span class="skill-label">Next.js</span>
-            </div>
-            <div class="skill-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" alt="Tailwind" />
-              <span class="skill-label">Tailwind</span>
-            </div>
+            
+            <div class="loading-bar"></div>
           </div>
           
-          <div class="tech-title">DEVELOPMENT TOOLS</div>
-          <div class="tier2">
-            <div class="skill-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" />
-              <span class="skill-label">Node.js</span>
+          <!-- Browser Content -->
+          <div class="browser-body">
+            <div class="container">
+              <div class="bg-pattern"></div>
+              <div class="grid-overlay"></div>
+              <div class="glow-points">
+                <div class="glow-point"></div>
+                <div class="glow-point"></div>
+                <div class="glow-point"></div>
+                <div class="glow-point"></div>
+                <div class="glow-point"></div>
+                <div class="glow-point"></div>
+              </div>
+              
+              <!-- Lightning Logo -->
+              <svg class="lightning-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="lightning-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#6366f1" />
+                    <stop offset="100%" stop-color="#a5b4fc" />
+                  </linearGradient>
+                </defs>
+                <path d="M60,0 L30,50 L50,50 L35,100 L75,40 L50,40 L60,0" fill="url(#lightning-gradient)" />
+              </svg>
+              
+              <div class="content-wrapper">
+                <div class="greeting">
+                  Hi! I'm KyoTranDev from VietNam
+                </div>
+                <div class="divider"></div>
+                <div class="subtitle">
+                  Aspiring to become an indie hacker with a passion for web development
+                </div>
+                <div class="tech-title">CORE TECHNOLOGIES</div>
+                <div class="tier1">
+                  <div class="skill-item">
+                    <img src="./images/javascript.svg" alt="JS" />
+                  </div>
+                  <div class="skill-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" />
+                  </div>
+                  <div class="skill-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" />
+                  </div>
+                  <div class="skill-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" />
+                  </div>
+                  <div class="skill-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" alt="Tailwind" />
+                  </div>
+                </div>
+                
+                <div class="tech-title">DEVELOPMENT TOOLS</div>
+                <div class="tier2">
+                  <div class="skill-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" />
+                  </div>
+                  <div class="skill-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VSCode" />>
+                  </div>
+                  <div class="skill-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
+                  </div>
+                  <div class="skill-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
+                  </div>
+                  <div class="skill-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" />
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="skill-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VSCode" />
-              <span class="skill-label">VSCode</span>
+          </div>
+          
+          <!-- Browser Footer -->
+          <div class="browser-footer">
+            <div class="footer-left">
+              <div class="footer-item">
+                <div class="footer-icon"></div>
+                <span>Developer Tools</span>
+              </div>
+              <div class="footer-item">
+                <div class="footer-icon"></div>
+                <span>Extensions</span>
+              </div>
             </div>
-            <div class="skill-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
-              <span class="skill-label">GitHub</span>
-            </div>
-            <div class="skill-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
-              <span class="skill-label">Git</span>
-            </div>
-            <div class="skill-item">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" />
-              <span class="skill-label">MongoDB</span>
+            <div class="footer-right">
+              <div class="footer-item">
+                <span>HTML5 • CSS3 • JavaScript</span>
+              </div>
+              <div class="footer-item">
+                <div class="footer-icon"></div>
+                <span>Cookies: 0</span>
+              </div>
             </div>
           </div>
         </div>
