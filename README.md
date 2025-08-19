@@ -1,7 +1,4 @@
 <!-- KyoTranDev -->
-<a href="#" target="_blank">
-  <img src="svg/kyotrandev.svg" width="100%" alt="Click to see the source" />
-</a>
 <h2 align="center">🚀 Welcome to My GitHub Profile! 🚀</h2>
 <p align="center">Full-Stack Developer | Indie Hacker | Passionate About AI-Powered Dev Tools | Always Learning</p>
 
